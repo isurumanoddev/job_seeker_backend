@@ -20,3 +20,5 @@ public class AppointmentDto {
     private JobSeekerDto seeker;
     private ConsultantDto consultant;
 }
+
+

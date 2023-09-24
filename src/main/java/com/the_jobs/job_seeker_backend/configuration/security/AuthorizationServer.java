@@ -32,8 +32,9 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
                 .secret(encoder.encode("asm"))
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
                 .scopes("read", "write", "trust")
-                .accessTokenValiditySeconds((1 * 60 * 60)).
-                refreshTokenValiditySeconds((6 * 60 * 60));
+                .accessTokenValiditySeconds((6000000 * 60)).
+                refreshTokenValiditySeconds((6 * 6000 * 60))
+        ;
     }
 
     @Override

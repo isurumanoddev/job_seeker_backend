@@ -1,9 +1,6 @@
 package com.the_jobs.job_seeker_backend.service.impl;
 
-import com.the_jobs.job_seeker_backend.dto.AppointmentDto;
-import com.the_jobs.job_seeker_backend.dto.ConsultantDto;
-import com.the_jobs.job_seeker_backend.dto.JobSeekerDto;
-import com.the_jobs.job_seeker_backend.dto.UserDto;
+import com.the_jobs.job_seeker_backend.dto.*;
 import com.the_jobs.job_seeker_backend.entity.Appointment;
 import com.the_jobs.job_seeker_backend.entity.Consultant;
 import com.the_jobs.job_seeker_backend.entity.JobSeeker;
@@ -58,11 +55,12 @@ public class AppointmentServiceImpl implements AppointmentService {
         appointment.setConsultant(consultant);
         appointmentRepo.save(appointment);
 
-//        EmailDto emailDto = new EmailDto();
-//        emailDto.setMsg_body("Date: " + appointmentDto.getDate() + "\n" + "Time: " + appointmentDto.getStartTime() + " - " + appointmentDto.getEndTime());
-//        emailDto.setTo_mail("your_mail");
-//        emailDto.setSubject("Appointment scheduled");
-//        emailService.sendEmail(emailDto);
+        EmailDto emailDto = new EmailDto();
+        emailDto.setMsg_body("Date: " + appointmentDto.getDate() + "\n" + "Time: " + appointmentDto.getStartTime() + " - " + appointmentDto.getEndTime());
+        emailDto.setTo_mail(seeker.getEmail());
+        emailDto.setTo_mail(consultant.getUser().getUsername());
+        emailDto.setSubject("Appointment scheduled");
+        emailService.sendEmail(emailDto);
         return true;
     }
 

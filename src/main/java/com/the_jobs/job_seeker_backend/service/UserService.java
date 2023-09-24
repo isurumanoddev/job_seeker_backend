@@ -14,4 +14,6 @@ public interface UserService {
     boolean update_user(UserDto userDTO);
 
     boolean delete_user(long id);
+
+    Object get_user_by_username(String username);
 }

@@ -81,4 +81,19 @@ public class UserServiceImpl implements UserService {
         userRepo.deleteById(id);
         return true;
     }
+
+    @Override
+    public Object get_user_by_username(String username) {
+        Optional<User> byUsername = userRepo.findByUsername(username);
+        if (byUsername.isPresent()) {
+            User user = byUsername.get();
+            UserDto userDTO = new UserDto();
+            userDTO.setRole(user.getRole());
+            userDTO.setName(user.getName());
+            userDTO.setUsername(user.getUsername());
+            userDTO.setId(user.getId());
+            return userDTO;
+        }
+        return null;
+    }
 }

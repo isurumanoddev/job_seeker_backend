@@ -1,7 +1,5 @@
 package com.the_jobs.job_seeker_backend.controller;
 
-
-
 import com.the_jobs.job_seeker_backend.configuration.CommonResponse;
 import com.the_jobs.job_seeker_backend.dto.UserDto;
 import com.the_jobs.job_seeker_backend.service.UserService;
@@ -21,6 +19,11 @@ public class UserController {
     public ResponseEntity<CommonResponse> add_user(@RequestBody UserDto userDTO) {
         userService.add_user(userDTO);
         return ResponseEntity.ok(new CommonResponse(200, "Saved", null));
+    }
+//    get user by username , create a get endpoint
+    @GetMapping(value = "/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CommonResponse> get_user(@PathVariable(value = "username") String username) {
+        return ResponseEntity.ok(new CommonResponse(200, "Success", userService.get_user_by_username(username)));
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
